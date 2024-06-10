@@ -4,7 +4,7 @@ console.log(supabase)
 </script>
 
 <template>
-  <main>
+  <div class="p-10 h-[100vh] bg-teal-600 overflow-auto">
     <RouterView />
-  </main>
+  </div>
 </template>

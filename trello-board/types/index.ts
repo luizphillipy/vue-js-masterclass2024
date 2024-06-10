@@ -2,7 +2,7 @@
 export interface Column {
     title: string;
     id: ID;
-    tastks: Task[];
+    tasks: Task[];
 
 }
 export interface Task {
