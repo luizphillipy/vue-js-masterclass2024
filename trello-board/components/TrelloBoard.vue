@@ -1,9 +1,10 @@
     <script lang="ts"  setup>
-    import { ref } from 'vue'
+
     import type {Column, Task } from "~~/types"
     import { nanoid } from 'nanoid'
     import draggable from 'vuedraggable'
-    const columns = ref<Column[]>([
+    import { useLocalStorage } from '@vueuse/core'
+    const columns = useLocalStorage<Column[]>("trelloBoard",[
       {
         id: nanoid(),
         title: "Backlog",
@@ -33,7 +34,20 @@
         ]
 
       }
-    ])
+    ],{
+      serializer: {
+        read: (value) => {
+          return JSON.parse(value).map((column: Column) => {
+            column.tasks = column.tasks.map((task:Task) => {
+              task.createdAt = new Date(task.createdAt);
+              return task
+            })
+            return column
+          })
+        },
+        write: (value) => JSON.stringify(value)
+      }
+    })
 
       const alt = useKeyModifier("Alt")
 function createColumn() {
