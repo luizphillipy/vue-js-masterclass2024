@@ -3,8 +3,10 @@
     import type {Column, Task } from "~~/types"
     import { nanoid } from 'nanoid'
     import draggable from 'vuedraggable'
+
     import { useLocalStorage } from '@vueuse/core'
     const columns = useLocalStorage<Column[]>("trelloBoard",[
+
       {
         id: nanoid(),
         title: "Backlog",
@@ -49,6 +51,7 @@
       }
     })
 
+
       const alt = useKeyModifier("Alt")
 function createColumn() {
       const column: Column = {
@@ -66,7 +69,7 @@ function createColumn() {
 <template>
 <div class="flex items-start overflow-x-auto gap-4" >
   <draggable
-  v-model="columns"
+  :v-model="columns"
   group="columns"
   handle=".drag-handle"
   item-key="id"
@@ -111,11 +114,13 @@ function createColumn() {
   </template>
   </draggable>
   <button
+
     @click="createColumn"
     class="bg-gray-200 whitespace-nowrap p-2 rounded opacity-50"
     >
     + Add Another Column
   </button>
+
   </div>
 
 
