@@ -1,11 +1,31 @@
 <script setup lang="ts">
-import {supabase} from '@/lib/supabaseClient'
-import Swiper from '@/components/swiper.vue'
-import ImageShow from '@/components/ImageShow.vue'
+// import {supabase} from '@/lib/supabaseClient'
+
 import { ref } from 'vue'
-console.log(supabase)
+import Swiper from './components/swiper.vue';
+import ImageShow from './components/ImageShow.vue';
+// console.log(supabase)
 const list = [
-  {id:0, image:''}
+  {
+    "id": 0,
+    "url": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?fit=crop&w=1024&h=300"
+  },
+  {
+    "id": 1,
+    "url": "https://images.unsplash.com/photo-1542029806767-3a4c2b793a11?fit=crop&w=1024&h=300"
+  },
+  {
+    "id": 2,
+    "url": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?fit=crop&w=1024&h=300"
+  },
+  {
+    "id": 3,
+    "url": "https://images.unsplash.com/photo-1542029806767-3a4c2b793a11?fit=crop&w=1024&h=300"
+  },
+  {
+    "id": 4,
+    "url": "https://images.unsplash.com/photo-1542029806767-3a4c2b793a11?fit=crop&w=1024&h=300"
+  }
 ]
 const index = ref(0)
 </script>
@@ -14,10 +34,10 @@ const index = ref(0)
   <div class="p-10 h-[100vh] bg-teal-600 overflow-auto">
     <RouterView />
   </div>
-  <swiper :list="list" :index="index">
+  <Swiper :list="list" :index="index">
     <template v-slot="{item}">
       <ImageShow
-      v-bind="item"
+      v-bind:item="item"
       />
     </template>
 

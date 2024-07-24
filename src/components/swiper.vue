@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
   <ul>
-    <li v-for="item in props.list" key="image">
+    <li v-for="item in props.list" :key="item">
       <slot :item="item"></slot>
     </li>
   </ul>
