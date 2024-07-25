@@ -1,4 +1,6 @@
 <script setup>
+import { computed, ref, onMounted } from 'vue'
+
 const props = defineProps({
   list: {
     type:Array,
@@ -9,11 +11,19 @@ const props = defineProps({
     default: 0
   }
 })
+const el = ref(null)
+const elWidth = computed(() => {
+  console.log("clientWidth: ", el.value[0].clientWidth)
+  return el.value[0].clientWidth
+})
+onMounted(() => {
+  console.log(elWidth.value)
+})
 </script>
 
 <template>
   <ul>
-    <li v-for="item in props.list" :key="item">
+    <li v-for="item in props.list" :key="item" ref="el">
       <slot :item="item"></slot>
     </li>
   </ul>
